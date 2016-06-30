@@ -5,7 +5,14 @@
 }
 
 @Html.ActionLink("Add Fixture", "Add", "Fixtures", new { area = "" }, new { @class = "btn btn-default" })
+@if (TempData["Message"] != null)
+{
 
+    <div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Warning!</strong> @TempData["Message"]
+    </div>
+}
 
 <table class="dataTable">
     <thead>

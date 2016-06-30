@@ -1,8 +1,50 @@
-﻿
+﻿@model Euro2016.Models.LoginViewModel
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Login</h2>
+@if (TempData["Message"] != null)
+{
 
+    <div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Warning!</strong> @TempData["Message"]
+    </div>
+}
+@using (Html.BeginForm("Login", "Account"))
+
+    
+{
+
+    @Html.HiddenFor(x => x.ReturnUrl)
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+
+                @Html.LabelFor(x => x.Username) <span class="red">@Html.ValidationMessageFor(x => x.Password, "*")</span>
+
+                @Html.TextBoxFor(x => x.Username, new { @class = "form-control" })
+
+
+            </div>
+            <div class="form-group">
+
+                @Html.LabelFor(x => x.Password) <span class="red">@Html.ValidationMessageFor(x => x.Password, "*")</span>
+
+                @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <input type="submit" value="Submit" />
+
+            </div>
+        </div>
+    </div>
+}

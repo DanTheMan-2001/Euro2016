@@ -131,6 +131,12 @@ namespace Euro2016.Controllers
 
                 if (fixture != null)
                 {
+                    if (fixture.Results.Any())
+                    {
+                        TempData.Add("Message", "Cannot delete fixture as it contains results.");
+                        return RedirectToAction("Index");
+                    }
+
                     dbContext.Fixtures.Remove(fixture);
 
                     dbContext.SaveChanges();

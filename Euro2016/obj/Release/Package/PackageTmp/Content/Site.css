@@ -98,6 +98,15 @@ span.red {
     margin-right: 15px;
 }
 
+.welcome{
+    color:white;
+    padding-top:15px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.navbar-header{
+    width:100%;
+   
 }
 
 

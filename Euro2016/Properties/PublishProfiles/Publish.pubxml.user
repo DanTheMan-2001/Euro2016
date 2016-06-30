@@ -13,7 +13,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/03/2015 16:43:34</publishTime>
     </File>
     <File Include="bin/Euro2016.dll">
-      <publishTime>06/30/2016 13:42:05</publishTime>
+      <publishTime>06/30/2016 14:50:17</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>06/15/2015 02:06:24</publishTime>
@@ -412,7 +412,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/28/2016 15:18:59</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>06/29/2016 16:33:04</publishTime>
+      <publishTime>06/30/2016 14:31:52</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
       <publishTime>06/27/2016 12:23:45</publishTime>
@@ -649,7 +649,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/27/2016 12:23:46</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
-      <publishTime>06/30/2016 11:59:03</publishTime>
+      <publishTime>06/30/2016 14:12:45</publishTime>
     </File>
     <File Include="Views/Fixtures/Add.cshtml">
       <publishTime>06/29/2016 11:23:06</publishTime>
@@ -658,10 +658,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/29/2016 10:23:15</publishTime>
     </File>
     <File Include="Views/Fixtures/Index.cshtml">
-      <publishTime>06/30/2016 12:08:05</publishTime>
+      <publishTime>06/30/2016 14:46:34</publishTime>
     </File>
     <File Include="Views/Groups/Add.cshtml">
-      <publishTime>06/28/2016 14:47:18</publishTime>
+      <publishTime>06/30/2016 13:53:56</publishTime>
     </File>
     <File Include="Views/Groups/Edit.cshtml">
       <publishTime>06/29/2016 09:51:57</publishTime>
@@ -676,7 +676,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/30/2016 11:52:45</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>06/29/2016 16:46:32</publishTime>
+      <publishTime>06/30/2016 14:33:55</publishTime>
     </File>
     <File Include="Views/Teams/Add.cshtml">
       <publishTime>06/29/2016 11:32:02</publishTime>
