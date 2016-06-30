@@ -25,6 +25,7 @@ namespace Euro2016.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Add()
         {
             var model = new Euro2016.Models.FixturesViewModel();
@@ -39,6 +40,7 @@ namespace Euro2016.Controllers
 
 
         [HttpGet]
+        [Authorize]
         public ActionResult Edit(int id)
         {
             var model = new Euro2016.Models.FixturesViewModel();
@@ -55,6 +57,7 @@ namespace Euro2016.Controllers
             return View(model);
         }
         [HttpPost]
+        [Authorize]
         public ActionResult Add(Euro2016.Models.FixturesViewModel model)
         {
             using (var dbContext = new Euro2016Entities())
@@ -93,6 +96,7 @@ namespace Euro2016.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(Euro2016.Models.FixturesViewModel model)
         {
             if (!ModelState.IsValid)
@@ -118,6 +122,7 @@ namespace Euro2016.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Delete(int id)
         {
             using (var dbContext = new Euro2016Entities())

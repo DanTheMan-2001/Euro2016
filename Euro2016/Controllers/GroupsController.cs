@@ -21,13 +21,21 @@ namespace Euro2016.Controllers
             return View(model);
         }
 
+
+
+
         [HttpGet]
+        [Authorize]
         public ActionResult Add()
         {
             return View();
         }
 
+
+
+
         [HttpGet]
+        [Authorize]
         public ActionResult Edit(int id)
         {
             var model = new Euro2016.Models.GroupViewModel();
@@ -41,6 +49,7 @@ namespace Euro2016.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Add(Euro2016.Models.GroupViewModel model)
         {
             if (!ModelState.IsValid)
@@ -63,6 +72,7 @@ namespace Euro2016.Controllers
 
 
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(Euro2016.Models.GroupViewModel model)
         {
             if (!ModelState.IsValid)
@@ -86,6 +96,7 @@ namespace Euro2016.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Delete(int id)
         {
             using (var dbContext = new Euro2016Entities())
