@@ -29,6 +29,13 @@ namespace Euro2016
         public string Name { get; set; }
         public string Flag { get; set; }
         public bool Eliminated { get; set; }
+        public Nullable<int> Played { get; set; }
+        public Nullable<int> Won { get; set; }
+        public Nullable<int> Drawn { get; set; }
+        public Nullable<int> Lost { get; set; }
+        public Nullable<int> Scored { get; set; }
+        public Nullable<int> Conceded { get; set; }
+        public Nullable<int> Points { get; set; }
     
         public virtual ICollection<Fixture> AwayFixtures { get; set; }
         public virtual ICollection<Fixture> HomeFixtures { get; set; }

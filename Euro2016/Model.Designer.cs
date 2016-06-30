@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'c:\users\daniel\documents\visual studio 2015\Projects\Euro2016\Euro2016\Model.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Daniel\Documents\GitHub\Euro2016\Euro2016\Model.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

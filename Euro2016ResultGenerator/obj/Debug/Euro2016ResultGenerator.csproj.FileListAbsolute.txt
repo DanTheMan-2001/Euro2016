@@ -1,0 +1,8 @@
+C:\Users\Daniel\Documents\GitHub\Euro2016\Euro2016ResultGenerator\bin\Debug\Euro2016ResultGenerator.exe.config
+C:\Users\Daniel\Documents\GitHub\Euro2016\Euro2016ResultGenerator\bin\Debug\Euro2016ResultGenerator.exe
+C:\Users\Daniel\Documents\GitHub\Euro2016\Euro2016ResultGenerator\bin\Debug\Euro2016ResultGenerator.pdb
+C:\Users\Daniel\Documents\GitHub\Euro2016\Euro2016ResultGenerator\obj\Debug\Euro2016ResultGenerator.csprojResolveAssemblyReference.cache
+C:\Users\Daniel\Documents\GitHub\Euro2016\Euro2016ResultGenerator\obj\Debug\Euro2016ResultGenerator.exe
+C:\Users\Daniel\Documents\GitHub\Euro2016\Euro2016ResultGenerator\obj\Debug\Euro2016ResultGenerator.pdb
+C:\Users\Daniel\Documents\GitHub\Euro2016\Euro2016ResultGenerator\bin\Debug\EntityFramework.dll
+C:\Users\Daniel\Documents\GitHub\Euro2016\Euro2016ResultGenerator\bin\Debug\EntityFramework.xml

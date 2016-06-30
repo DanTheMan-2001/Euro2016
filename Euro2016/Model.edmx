@@ -56,6 +56,13 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Flag" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Eliminated" Type="bit" Nullable="false" />
+          <Property Name="Played" Type="int" />
+          <Property Name="Won" Type="int" />
+          <Property Name="Drawn" Type="int" />
+          <Property Name="Lost" Type="int" />
+          <Property Name="Scored" Type="int" />
+          <Property Name="Conceded" Type="int" />
+          <Property Name="Points" Type="int" />
         </EntityType>
         <EntityType Name="Venue">
           <Key>
@@ -176,7 +183,7 @@
           <NavigationProperty Name="Results" Relationship="Self.FK_Result_Fixture" FromRole="Fixture" ToRole="Result" />
           <NavigationProperty Name="AwayTeam" Relationship="Euro2016Model.FK_Fixture_AwayTeam" FromRole="Fixture" ToRole="Team" />
           <NavigationProperty Name="HomeTeam" Relationship="Euro2016Model.FK_Fixture_HomeTeam" FromRole="Fixture" ToRole="Team" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="Group">
           <Key>
             <PropertyRef Name="Id" />
@@ -265,7 +272,7 @@
             <End Role="Group" EntitySet="Groups" />
             <End Role="Team" EntitySet="Teams" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Team">
           <Key>
             <PropertyRef Name="Id" />
@@ -279,6 +286,13 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Flag" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Eliminated" Type="Boolean" Nullable="false" />
+          <Property Name="Played" Type="Int32" />
+          <Property Name="Won" Type="Int32" />
+          <Property Name="Drawn" Type="Int32" />
+          <Property Name="Lost" Type="Int32" />
+          <Property Name="Scored" Type="Int32" />
+          <Property Name="Conceded" Type="Int32" />
+          <Property Name="Points" Type="Int32" />
           <NavigationProperty Name="AwayFixtures" Relationship="Euro2016Model.FK_Fixture_AwayTeam" FromRole="Team" ToRole="Fixture" />
           <NavigationProperty Name="HomeFixtures" Relationship="Euro2016Model.FK_Fixture_HomeTeam" FromRole="Team" ToRole="Fixture" />
           <NavigationProperty Name="Group" Relationship="Euro2016Model.FK_Team_Group" FromRole="Team" ToRole="Group" />
@@ -319,7 +333,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -381,6 +395,13 @@
           <EntitySetMapping Name="Teams">
             <EntityTypeMapping TypeName="Euro2016Model.Team">
               <MappingFragment StoreEntitySet="Team">
+                <ScalarProperty Name="Points" ColumnName="Points" />
+                <ScalarProperty Name="Conceded" ColumnName="Conceded" />
+                <ScalarProperty Name="Scored" ColumnName="Scored" />
+                <ScalarProperty Name="Lost" ColumnName="Lost" />
+                <ScalarProperty Name="Drawn" ColumnName="Drawn" />
+                <ScalarProperty Name="Won" ColumnName="Won" />
+                <ScalarProperty Name="Played" ColumnName="Played" />
                 <ScalarProperty Name="Eliminated" ColumnName="Eliminated" />
                 <ScalarProperty Name="Flag" ColumnName="Flag" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
