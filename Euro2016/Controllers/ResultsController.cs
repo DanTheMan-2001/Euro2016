@@ -112,7 +112,7 @@ namespace Euro2016.Controllers
                
 
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Tables", "Home");
 
 
         }

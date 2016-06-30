@@ -122,3 +122,16 @@ span.red {
     text-align: left !important;
     margin-bottom:20px;
 }
+
+.indentbullet{
+    font-size: 11px;
+    margin-left:20px;
+}
+ img{
+     max-width:100%:
+ }
+
+ footer img{
+     
+     max-width:120px;
+ }
