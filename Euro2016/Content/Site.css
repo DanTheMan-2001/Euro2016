@@ -156,3 +156,7 @@ span.red {
  .btn-default{
      margin-right:10px;
  }
+
+ .dataTable td{
+     padding:5px;
+ }

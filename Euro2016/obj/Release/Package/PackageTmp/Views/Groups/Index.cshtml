@@ -33,7 +33,7 @@
                 <td>@group.Name</td>
                 <td>@group.CreationDate</td>
                 <td>@group.CreationSource</td>
-                <td>
+                <td align="center">
                     @Html.ActionLink("Edit", "Edit", "Groups", new { id = group.Id }, new { @class = "btn btn-default" })
                     @Html.ActionLink("Delete", "Delete", "Groups", new { id = group.Id }, new { @class = "btn btn-default" })
                 </td>

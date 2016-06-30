@@ -29,12 +29,12 @@
                 @Html.ActionLink("Results", "Index", "Results", new { area = "" }, new { @class = "navbar-brand" })
                 @if (Request.IsAuthenticated)
                 {
-                    @Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { @class = "navbar-brand" })
-                    <span class="pull-right welcome">You are logged in as <u>@User.Identity.Name</u></span>
+                    
+                    <span class="pull-right welcome">You are logged in as <strong>@User.Identity.Name</strong> | @Html.ActionLink("Logout", "Logout", "Account")</span>
                 }
                 else
                 {
-                    @Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                    <span class="pull-right">@Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })</span> 
                 }
                 
             </div>
