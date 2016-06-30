@@ -21,7 +21,7 @@
 
                 <a href="@Url.Action("Index", "Home")"><img src="http://www.euro2016calendar.com/res/euro-logo.png" /></a>
 
-                @Html.ActionLink("Tables", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Tables", "Tables", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Groups", "Index", "Groups", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Teams", "Index", "Teams", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Venues", "Index", "Venues", new { area = "" }, new { @class = "navbar-brand" })
@@ -49,7 +49,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Daniel Lord</p>
+            <p>&copy; @DateTime.Now.Year - Daniel Lord <img class="pull-right" src="http://actsofkindness.rapp.com/content/actsofkindness/assets/images/confirm--logo.png" /></p>
         </footer>
     </div>
 

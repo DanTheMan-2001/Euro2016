@@ -47,8 +47,7 @@ span.red {
 }
 
     .navbar-inverse .navbar-brand:hover {
-        color: #999;
-        font-weight: 900;
+        color: #ff00dc;
     }
 
 .dataTable {
@@ -98,6 +97,13 @@ span.red {
     margin-right: 15px;
 }
 
+.navbar-header img:hover{
+    max-width:92px;
+}
+
+
+
+
 .welcome{
     color:white;
     padding-top:15px;
@@ -106,6 +112,7 @@ span.red {
 
 .navbar-header{
     width:100%;
+    height:45px;
    
 }
 
@@ -128,10 +135,24 @@ span.red {
     margin-left:20px;
 }
  img{
-     max-width:100%:
+     max-width:100%;
  }
 
  footer img{
      
      max-width:120px;
+ }
+
+
+ .welcome a{
+     color:white;
+
+ }
+
+ .welcome a:hover{
+     font-weight:bold;
+ }
+
+ .btn-default{
+     margin-right:10px;
  }

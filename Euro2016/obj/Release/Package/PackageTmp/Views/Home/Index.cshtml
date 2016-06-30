@@ -1,44 +1,50 @@
-﻿@model Euro2016.Models.HomeViewModel
+﻿
 @{
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<h2>Work Experience June 2016</h2>
+
 <div class="row">
-    @foreach (var group in Model.Groups)
-    {
-        var i = 0;
-        <div class="col-md-6">
-            <h4><strong>@group.Name</strong></h4>
-            <table class="leagueTable">
-                <thead>
-                <th width="4%" align="center">NAME</th>
-                <th width="1%" align="center">PLD</th>
-                <th width="1%" align="center">W</th>
-                <th width="1%" align="center">D</th>
-                <th width="1%" align="center">L</th>
-                <th width="1%" align="center">F</th>
-                <th width="1%" align="center">A</th>
-                <th width="1%" align="center">GD</th>
-                <th width="1%" align="center"><strong>PTS</strong></th>
-                </thead>
-                <tbody>
-                    @foreach (var team in group.Teams.OrderByDescending(x => x.Points).ThenByDescending(x => x.Scored - x.Conceded).ThenByDescending(x => x.Scored))
-                    {
-                        <tr class="@(i%2 == 0 ? "odd" : "even")">
-                            <td><img src="@team.Flag" /><a href="@Url.Action("Fixtures", "Teams", new { id = team.Id })">@team.Name</a></td>
-                            <td>@team.Played</td>
-                            <td>@team.Won</td>
-                            <td>@team.Drawn</td>
-                            <td>@team.Lost</td>
-                            <td>@team.Scored</td>
-                            <td>@team.Conceded</td>
-                            <td>@(team.Scored - @team.Conceded)</td>
-                            <td><strong>@team.Points</strong></td>
-                        </tr>
-                        i++;
-                    }
-                </tbody>
-            </table>
-        </div>
-    }
+    <div class="col-md-6">
+        <p>This week I have worked at RAPP. My task was to build this website, using SQL server and Visual Studio. I have used programming languages such as <strong>asp.net</strong>, <strong>C#</strong>, <strong>css</strong> and <strong>HTML</strong>.</p>
+        
+        
+        <p>Programs that I have installed:</p>
+
+        <ul>
+            <li>Visual Studio – Microsoft’s development environment for creating applications.</li>
+            <li>SQL Server – Microsoft’s enterprise database platform.</li>
+        </ul>
+
+
+        <p>Databases:</p>
+
+        <ul>
+            <li>A primary key is used to uniquely identify all table records.</li>
+            <li>A foreign key is a field in a table linked to a record in another table, for example <strong>GroupId in the teams table is a foreign key to the group table.</strong></li>
+        </ul>
+
+
+        <p>Web Application:</p>
+
+        <ul>
+            <li>Building a website using MVC (model view controller).</li>
+            <li class="indentbullet">The model represents the data being displayed, for example a team.</li>
+            <li class="indentbullet">The view is the user interface, for example the page that allows you to add or edit a team.</li>
+            <li class="indentbullet">The controller works out the page and view to display.</li>
+            <li>Entity framework – this maps our database tables into objects within our web application.</li>
+        </ul>
+
+        <p>Building the website:</p>
+
+        <ul>
+            <li>Using Visual Studio, I have made controllers, models and views for the different pages of my site. I have included css so that my website looks aesthetically pleasing and I have used data tables to store data allowing the user to search for certain data, and I have adapted this to suit my purpose in the layout.cshtml file.</li>
+        </ul>
+    </div>
+
+    <div class="col-md-6">
+        <img src="http://i4.mirror.co.uk/incoming/article7638928.ece/ALTERNATES/s615/Marcus-Rashford.jpg" style="border:2pt ridge dimgray" />
+    </div>
 </div>
