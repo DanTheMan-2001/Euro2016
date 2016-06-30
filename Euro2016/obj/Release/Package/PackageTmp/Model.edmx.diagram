@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="Euro2016Model.Venue" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
         <AssociationConnector Association="Euro2016Model.FK_Fixture_Venue" ManuallyRouted="false" />
         <AssociationConnector Association="Euro2016Model.FK_Result_Fixture" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Euro2016Model.Team" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="Euro2016Model.Team" Width="1.5" PointX="3" PointY="9.25" />
         <AssociationConnector Association="Euro2016Model.FK_Fixture_AwayTeam" />
         <AssociationConnector Association="Euro2016Model.FK_Fixture_HomeTeam" />
         <AssociationConnector Association="Euro2016Model.FK_Team_Group" />

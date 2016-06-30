@@ -22,18 +22,18 @@
                 <th width="1%" align="center"><strong>PTS</strong></th>
                 </thead>
                 <tbody>
-                    @foreach (var team in group.Teams.OrderBy(x => x.Name))
+                    @foreach (var team in group.Teams.OrderByDescending(x => x.Points).ThenByDescending(x => x.Scored - x.Conceded).ThenByDescending(x => x.Scored))
                     {
                         <tr class="@(i%2 == 0 ? "odd" : "even")">
                             <td><img src="@team.Flag" /><a href="@Url.Action("Fixtures", "Teams", new { id = team.Id })">@team.Name</a></td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td><strong>0</strong></td>
+                            <td>@team.Played</td>
+                            <td>@team.Won</td>
+                            <td>@team.Drawn</td>
+                            <td>@team.Lost</td>
+                            <td>@team.Scored</td>
+                            <td>@team.Conceded</td>
+                            <td>@(team.Scored - @team.Conceded)</td>
+                            <td><strong>@team.Points</strong></td>
                         </tr>
                         i++;
                     }

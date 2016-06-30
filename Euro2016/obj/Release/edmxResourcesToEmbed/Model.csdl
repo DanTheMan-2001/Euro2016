@@ -120,6 +120,13 @@
     <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Flag" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Eliminated" Type="Boolean" Nullable="false" />
+    <Property Name="Played" Type="Int32" />
+    <Property Name="Won" Type="Int32" />
+    <Property Name="Drawn" Type="Int32" />
+    <Property Name="Lost" Type="Int32" />
+    <Property Name="Scored" Type="Int32" />
+    <Property Name="Conceded" Type="Int32" />
+    <Property Name="Points" Type="Int32" />
     <NavigationProperty Name="AwayFixtures" Relationship="Euro2016Model.FK_Fixture_AwayTeam" FromRole="Team" ToRole="Fixture" />
     <NavigationProperty Name="HomeFixtures" Relationship="Euro2016Model.FK_Fixture_HomeTeam" FromRole="Team" ToRole="Fixture" />
     <NavigationProperty Name="Group" Relationship="Euro2016Model.FK_Team_Group" FromRole="Team" ToRole="Group" />

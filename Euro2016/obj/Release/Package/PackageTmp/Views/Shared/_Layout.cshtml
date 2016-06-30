@@ -18,9 +18,10 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <img src="http://www.euro2016calendar.com/res/euro-logo.png" />
 
-                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a href="@Url.Action("Index", "Home")"><img src="http://www.euro2016calendar.com/res/euro-logo.png" /></a>
+
+                @Html.ActionLink("Tables", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Groups", "Index", "Groups", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Teams", "Index", "Teams", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Venues", "Index", "Venues", new { area = "" }, new { @class = "navbar-brand" })

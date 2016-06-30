@@ -57,6 +57,13 @@
     <EntitySetMapping Name="Teams">
       <EntityTypeMapping TypeName="Euro2016Model.Team">
         <MappingFragment StoreEntitySet="Team">
+          <ScalarProperty Name="Points" ColumnName="Points" />
+          <ScalarProperty Name="Conceded" ColumnName="Conceded" />
+          <ScalarProperty Name="Scored" ColumnName="Scored" />
+          <ScalarProperty Name="Lost" ColumnName="Lost" />
+          <ScalarProperty Name="Drawn" ColumnName="Drawn" />
+          <ScalarProperty Name="Won" ColumnName="Won" />
+          <ScalarProperty Name="Played" ColumnName="Played" />
           <ScalarProperty Name="Eliminated" ColumnName="Eliminated" />
           <ScalarProperty Name="Flag" ColumnName="Flag" />
           <ScalarProperty Name="Name" ColumnName="Name" />

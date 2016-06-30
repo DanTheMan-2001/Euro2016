@@ -51,6 +51,13 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Flag" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Eliminated" Type="bit" Nullable="false" />
+    <Property Name="Played" Type="int" />
+    <Property Name="Won" Type="int" />
+    <Property Name="Drawn" Type="int" />
+    <Property Name="Lost" Type="int" />
+    <Property Name="Scored" Type="int" />
+    <Property Name="Conceded" Type="int" />
+    <Property Name="Points" Type="int" />
   </EntityType>
   <EntityType Name="Venue">
     <Key>

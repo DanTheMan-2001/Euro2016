@@ -26,7 +26,7 @@
                 <td>@fixture.Id</td>
                 <td><img src="@fixture.HomeTeam.Flag" /><a href="@Url.Action("Fixtures", "Teams", new { id = fixture.HomeTeamId })">@fixture.HomeTeam.Name</a></td>
                 <td><img src="@fixture.AwayTeam.Flag" /><a href="@Url.Action("Fixtures", "Teams", new { id = fixture.AwayTeamId })">@fixture.AwayTeam.Name</a></td>
-                <td>@fixture.Venue.Name</td>
+                <td><a href="@Url.Action("Fixtures", "Venues", new { id = fixture.VenueId })">@fixture.Venue.Name</a></td>
                 <td>@fixture.Date</td>
                 
             </tr>

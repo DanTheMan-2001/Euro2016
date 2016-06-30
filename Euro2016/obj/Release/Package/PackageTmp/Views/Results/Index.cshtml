@@ -6,6 +6,36 @@
 
 <h2>Results</h2>
 
-@Html.ActionLink("Generate Results", "GenerateResults", "Results", new { area = "" }, new { @class = "btn btn-default" })
+@Html.ActionLink("Randomize Results", "GenerateResults", "Results", new { @class = "btn btn-default"})
 
 
+<table class="dataTable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Home Score</th>
+            <th>Home Team</th>
+            <th>Away Team</th>
+            <th>Away Score</th>
+            <th>Venue</th>
+            <th>Date</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var result in Model.Results)
+        {
+
+            <tr>
+                <td>@result.Id</td>
+                <td>@result.HomeScore</td>
+                <td><img src="@result.Fixture.HomeTeam.Flag" /><a href="@Url.Action("Fixtures", "Teams", new { id = result.Fixture.HomeTeamId })">@result.Fixture.HomeTeam.Name</a></td>
+                <td><img src="@result.Fixture.AwayTeam.Flag" /><a href="@Url.Action("Fixtures", "Teams", new { id = result.Fixture.AwayTeamId })">@result.Fixture.AwayTeam.Name</a></td>
+                <td>@result.AwayScore</td>
+                <td><a href="@Url.Action("Fixtures", "Venues", new { id = result.Fixture.VenueId })">@result.Fixture.Venue.Name</a></td>
+                <td>@result.Fixture.Date</td>
+               
+            </tr>
+        }
+    </tbody>
+</table>

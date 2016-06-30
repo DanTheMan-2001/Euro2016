@@ -13,7 +13,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/03/2015 16:43:34</publishTime>
     </File>
     <File Include="bin/Euro2016.dll">
-      <publishTime>06/29/2016 16:34:08</publishTime>
+      <publishTime>06/30/2016 13:42:05</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>06/15/2015 02:06:24</publishTime>
@@ -430,7 +430,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/27/2016 12:16:35</publishTime>
     </File>
     <File Include="Model.edmx.diagram">
-      <publishTime>06/29/2016 11:59:25</publishTime>
+      <publishTime>06/30/2016 10:58:46</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>06/28/2016 15:18:59</publishTime>
@@ -648,6 +648,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/modernizr-2.6.2.js">
       <publishTime>06/27/2016 12:23:46</publishTime>
     </File>
+    <File Include="Views/Account/Login.cshtml">
+      <publishTime>06/30/2016 11:59:03</publishTime>
+    </File>
     <File Include="Views/Fixtures/Add.cshtml">
       <publishTime>06/29/2016 11:23:06</publishTime>
     </File>
@@ -655,7 +658,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/29/2016 10:23:15</publishTime>
     </File>
     <File Include="Views/Fixtures/Index.cshtml">
-      <publishTime>06/29/2016 12:14:43</publishTime>
+      <publishTime>06/30/2016 12:08:05</publishTime>
     </File>
     <File Include="Views/Groups/Add.cshtml">
       <publishTime>06/28/2016 14:47:18</publishTime>
@@ -667,13 +670,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/29/2016 16:02:18</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>06/29/2016 15:13:23</publishTime>
+      <publishTime>06/30/2016 11:33:40</publishTime>
     </File>
     <File Include="Views/Results/Index.cshtml">
-      <publishTime>06/28/2016 15:48:53</publishTime>
+      <publishTime>06/30/2016 11:52:45</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>06/29/2016 15:18:57</publishTime>
+      <publishTime>06/29/2016 16:46:32</publishTime>
     </File>
     <File Include="Views/Teams/Add.cshtml">
       <publishTime>06/29/2016 11:32:02</publishTime>
@@ -682,7 +685,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/29/2016 10:08:55</publishTime>
     </File>
     <File Include="Views/Teams/Fixtures.cshtml">
-      <publishTime>06/29/2016 16:16:19</publishTime>
+      <publishTime>06/29/2016 16:38:33</publishTime>
     </File>
     <File Include="Views/Teams/Index.cshtml">
       <publishTime>06/29/2016 12:15:44</publishTime>
@@ -703,7 +706,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/27/2016 12:16:35</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/28/2016 16:44:39</publishTime>
+      <publishTime>06/30/2016 13:42:06</publishTime>
     </File>
   </ItemGroup>
 </Project>
