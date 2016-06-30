@@ -12,10 +12,10 @@ namespace Euro2016.Controllers
         // GET: Teams
         public ActionResult Index()
         {
-            var model = new Euro2016.Models.TeamViewModel();
+            var model = new Euro2016.Models.TeamViewModel(); //this is creating a new instance of an object
 
 
-            using (var dbContext = new Euro2016Entities())
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 model.Teams = dbContext.Teams
                     .Include("Group")
@@ -24,13 +24,13 @@ namespace Euro2016.Controllers
             return View(model);
         }
 
-        [HttpGet]
-        [Authorize]
+        [HttpGet] //this requests data from a specified resource
+        [Authorize] //this means the user has to login to access the view
         public ActionResult Add()
         {
-            var model = new Euro2016.Models.TeamViewModel();
+            var model = new Euro2016.Models.TeamViewModel(); //this is creating a new instance of an object
 
-            using (var dbContext = new Euro2016Entities())
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 model.Groups = dbContext.Groups.ToList();
             }
@@ -38,12 +38,12 @@ namespace Euro2016.Controllers
             return View(model);
         }
 
-        [HttpGet]
-        [Authorize]
+        [HttpGet] //this requests data from a specified resource
+        [Authorize] //this means the user has to login to access the view
         public ActionResult Edit(int id)
         {
-            var model = new Euro2016.Models.TeamViewModel();
-            using (var dbContext = new Euro2016Entities())
+            var model = new Euro2016.Models.TeamViewModel(); //this is creating a new instance of an object
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 var team = dbContext.Teams.Where(x => x.Id == id).FirstOrDefault();
                 model.Name = team.Name;
@@ -55,21 +55,21 @@ namespace Euro2016.Controllers
         }
 
 
-        [HttpPost]
-        [Authorize]
+        [HttpPost] //this submits data to be processed to a specified resource
+        [Authorize] //this means the user has to login to access the view
         public ActionResult Add(Euro2016.Models.TeamViewModel model)
         {
-            using (var dbContext = new Euro2016Entities())
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 model.Groups = dbContext.Groups.ToList();
             }
 
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) //this checks if the model is valid, if it's not valid then we are returning the view and displaying an error. The model is invalid if a required property is not filled in for example.
             {         
                 return View(model);
             }
 
-            using (var dbContext = new Euro2016Entities())
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 var group = dbContext.Groups.Where(x => x.Id == model.GroupId).FirstOrDefault();
                 var teamCount = group.Teams.Count();
@@ -80,14 +80,14 @@ namespace Euro2016.Controllers
                 }
             }
 
-                var team = new Team();
+                var team = new Team(); //this is creating a new instance of an object
             team.Name = model.Name;
             team.Flag = model.Flag;
             team.GroupId = model.GroupId;
             team.CreationDate = DateTime.Now;
             team.CreationSource = "Dan";
 
-            using (var dbContext = new Euro2016Entities())
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 dbContext.Teams.Add(team);
                 dbContext.SaveChanges();
@@ -97,16 +97,16 @@ namespace Euro2016.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        [Authorize]
+        [HttpPost] //this submits data to be processed to a specified resource
+        [Authorize] //this means the user has to login to access the view
         public ActionResult Edit(Euro2016.Models.TeamViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) //this checks if the model is valid, if it's not valid then we are returning the view and displaying an error. The model is invalid if a required property is not filled in for example.
             {
                 return View(model);
             }
 
-            using (var dbContext = new Euro2016Entities())
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 var team = dbContext.Teams.Where(x => x.Id == model.Id).FirstOrDefault();
                 team.MaintenanceDate = DateTime.Now;
@@ -122,11 +122,11 @@ namespace Euro2016.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        [Authorize]
+        [HttpGet] //this requests data from a specified resource
+        [Authorize] //this means the user has to login to access the view
         public ActionResult Delete(int id)
         {
-            using (var dbContext = new Euro2016Entities())
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 var team = dbContext.Teams.Where(x => x.Id == id).FirstOrDefault();
 
@@ -148,14 +148,14 @@ namespace Euro2016.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
+        [HttpGet] //this requests data from a specified resource
         public ActionResult Fixtures(int id)
         {
 
-            var model = new Euro2016.Models.TeamFixturesViewModel();
+            var model = new Euro2016.Models.TeamFixturesViewModel(); //this is creating a new instance of an object
             model.Fixtures = new List<Fixture>();
 
-            using (var dbContext = new Euro2016Entities())
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 var team = dbContext.Teams
                     .Include(x=>x.HomeFixtures.Select(y=>y.HomeTeam))

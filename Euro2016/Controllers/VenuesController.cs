@@ -12,29 +12,29 @@ namespace Euro2016.Controllers
         // GET: Venues
         public ActionResult Index()
         {
-            var model = new Euro2016.Models.VenuesViewModel();
+            var model = new Euro2016.Models.VenuesViewModel(); //this is creating a new instance of an object
 
 
-            using (var dbContext = new Euro2016Entities())
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 model.Venues = dbContext.Venues.ToList();
             }
             return View(model);
         }
 
-        [HttpGet]
-        [Authorize]
+        [HttpGet] //this requests data from a specified resource
+        [Authorize] //this means the user has to login to access the view
         public ActionResult Add()
         {
             return View();
         }
 
-        [HttpGet]
-        [Authorize]
+        [HttpGet] //this requests data from a specified resource
+        [Authorize] //this means the user has to login to access the view
         public ActionResult Edit(int id)
         {
-            var model = new Euro2016.Models.VenuesViewModel();
-            using (var dbContext = new Euro2016Entities())
+            var model = new Euro2016.Models.VenuesViewModel(); //this is creating a new instance of an object
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 var venue = dbContext.Venues.Where(x => x.Id == id).FirstOrDefault();
                 model.Name = venue.Name;
@@ -43,20 +43,20 @@ namespace Euro2016.Controllers
                 return View(model);
         }
 
-        [HttpPost]
-        [Authorize]
+        [HttpPost] //this submits data to be processed to a specified resource
+        [Authorize] //this means the user has to login to access the view
         public ActionResult Add(Euro2016.Models.VenuesViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) //this checks if the model is valid, if it's not valid then we are returning the view and displaying an error. The model is invalid if a required property is not filled in for example.
             {
                 return View(model);
             }
-            var venue = new Venue();
+            var venue = new Venue(); //this is creating a new instance of an object
             venue.Name = model.Name;
             venue.CreationDate = DateTime.Now;
             venue.CreationSource = "Dan";
 
-            using (var dbContext = new Euro2016Entities())
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 dbContext.Venues.Add(venue);
                 dbContext.SaveChanges();
@@ -64,17 +64,17 @@ namespace Euro2016.Controllers
                 return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        [Authorize]
+        [HttpPost] //this submits data to be processed to a specified resource
+        [Authorize] //this means the user has to login to access the view
         public ActionResult Edit(Euro2016.Models.VenuesViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) //this checks if the model is valid, if it's not valid then we are returning the view and displaying an error. The model is invalid if a required property is not filled in for example.
             {
                 return View(model);
             }
           
 
-            using (var dbContext = new Euro2016Entities())
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 var venue = dbContext.Venues.Where(x => x.Id == model.Id).FirstOrDefault();
                 venue.Name = model.Name;
@@ -83,11 +83,11 @@ namespace Euro2016.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        [Authorize]
+        [HttpGet] //this requests data from a specified resource
+        [Authorize] //this means the user has to login to access the view
         public ActionResult Delete(int id)
         {
-            using (var dbContext = new Euro2016Entities())
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 var venue = dbContext.Venues.Where(x => x.Id == id).FirstOrDefault();
 
@@ -109,15 +109,15 @@ namespace Euro2016.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
+        [HttpGet] //this requests data from a specified resource
         public ActionResult Fixtures(int id)
         {
 
-            var model = new Euro2016.Models.VenueFixturesViewModel();
+            var model = new Euro2016.Models.VenueFixturesViewModel(); //this is creating a new instance of an object
             model.Fixtures = new List<Fixture>();
 
             //This is getting the requested venue from the database and including the venue fixtures
-            using (var dbContext = new Euro2016Entities())
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 var venue = dbContext.Venues
                     .Include(x => x.Fixtures.Select(y => y.HomeTeam))
@@ -132,7 +132,6 @@ namespace Euro2016.Controllers
             }
 
 
-            //This 
             return View(model);
         }
     }

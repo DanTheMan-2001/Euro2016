@@ -12,10 +12,10 @@ namespace Euro2016.Controllers
         // GET: Results
         public ActionResult Index()
         {
-            var model = new Euro2016.Models.ResultsViewModel();
+            var model = new Euro2016.Models.ResultsViewModel(); //this is creating a new instance of an object
 
 
-            using (var dbContext = new Euro2016Entities())
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 model.Results = dbContext.Results
                     .Include(x => x.Fixture.HomeTeam)
@@ -28,11 +28,11 @@ namespace Euro2016.Controllers
 
         public ActionResult GenerateResults()
         {
-            var rnd = new Random();
+            var rnd = new Random(); //this is creating a new instance of an object
             var maxScore = 5;
 
 
-            using (var dbContext = new Euro2016Entities())
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 //Clear results
                 var results = dbContext.Results.ToList();
@@ -96,7 +96,7 @@ namespace Euro2016.Controllers
 
        
 
-                    var result = new Result();
+                    var result = new Result(); //this is creating a new instance of an object
                     result.CreationDate = DateTime.Now;
                     result.CreationSource = "Dan";
                     result.HomeScore = homeScore;

@@ -11,9 +11,9 @@ namespace Euro2016.Controllers
         // GET: Fixtures
         public ActionResult Index()
         {
-            var model = new Euro2016.Models.FixturesViewModel();
+            var model = new Euro2016.Models.FixturesViewModel(); //this is creating a new instance of an object
 
-            using (var dbContext = new Euro2016Entities())
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 model.Fixtures = dbContext.Fixtures
                     .Include("HomeTeam")
@@ -24,13 +24,13 @@ namespace Euro2016.Controllers
             return View(model);
         }
 
-        [HttpGet]
-        [Authorize]
+        [HttpGet] //this requests data from a specified resource
+        [Authorize] //this means the user has to login to access the view
         public ActionResult Add()
         {
-            var model = new Euro2016.Models.FixturesViewModel();
+            var model = new Euro2016.Models.FixturesViewModel(); //this is creating a new instance of an object //this is creating a new instance of an object //this is creating a new instance of an object
 
-     using (var dbContext = new Euro2016Entities())
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 model.Teams = dbContext.Teams.OrderBy(x => x.Name).ToList();
                 model.Venues = dbContext.Venues.ToList();
@@ -39,12 +39,12 @@ namespace Euro2016.Controllers
         }
 
 
-        [HttpGet]
-        [Authorize]
+        [HttpGet] //this requests data from a specified resource
+        [Authorize] //this means the user has to login to access the view
         public ActionResult Edit(int id)
         {
-            var model = new Euro2016.Models.FixturesViewModel();
-            using (var dbContext = new Euro2016Entities())
+            var model = new Euro2016.Models.FixturesViewModel(); //this is creating a new instance of an object
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 var fixture = dbContext.Fixtures.Where(x => x.Id == id).FirstOrDefault();
                 model.HomeTeamId = fixture.HomeTeamId;
@@ -56,17 +56,17 @@ namespace Euro2016.Controllers
             }
             return View(model);
         }
-        [HttpPost]
-        [Authorize]
+        [HttpPost] //this submits data to be processed to a specified resource
+        [Authorize] //this means the user has to login to access the view
         public ActionResult Add(Euro2016.Models.FixturesViewModel model)
         {
-            using (var dbContext = new Euro2016Entities())
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 model.Teams = dbContext.Teams.OrderBy(x => x.Name).ToList();
                 model.Venues = dbContext.Venues.ToList();
             }
 
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) //this checks if the model is valid, if it's not valid then we are returning the view and displaying an error. The model is invalid if a required property is not filled in for example.
             {
                 return View(model);
             }
@@ -77,7 +77,7 @@ namespace Euro2016.Controllers
                 return View(model);
             }
 
-            var fixture = new Fixture();
+            var fixture = new Fixture(); //this is creating a new instance of an object
             fixture.HomeTeamId = model.HomeTeamId;
             fixture.AwayTeamId = model.AwayTeamId;
             fixture.VenueId = model.VenueId;
@@ -86,7 +86,7 @@ namespace Euro2016.Controllers
             fixture.CreationSource = "Dan";
 
 
-            using (var dbContext = new Euro2016Entities())
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 dbContext.Fixtures.Add(fixture);
                 dbContext.SaveChanges();
@@ -95,16 +95,16 @@ namespace Euro2016.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        [Authorize]
+        [HttpPost] //this submits data to be processed to a specified resource
+        [Authorize] //this means the user has to login to access the view
         public ActionResult Edit(Euro2016.Models.FixturesViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) //this checks if the model is valid, if it's not valid then we are returning the view and displaying an error. The model is invalid if a required property is not filled in for example.
             {
                 return View(model);
             }
 
-            using (var dbContext = new Euro2016Entities())
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 var fixture = dbContext.Fixtures.Where(x => x.Id == model.Id).FirstOrDefault();
                 fixture.MaintenanceDate = DateTime.Now;
@@ -121,11 +121,11 @@ namespace Euro2016.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        [Authorize]
+        [HttpGet] //this requests data from a specified resource
+        [Authorize] //this means the user has to login to access the view
         public ActionResult Delete(int id)
         {
-            using (var dbContext = new Euro2016Entities())
+            using (var dbContext = new Euro2016Entities()) //this gets a database connection until the curly bracket is closed
             {
                 var fixture = dbContext.Fixtures.Where(x => x.Id == id).FirstOrDefault();
 
