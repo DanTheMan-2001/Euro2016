@@ -17,6 +17,14 @@ namespace Euro2016.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
+
 
         [HttpPost]
         public ActionResult Login(Euro2016.Models.LoginViewModel model)
