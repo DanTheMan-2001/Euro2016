@@ -1,0 +1,49 @@
+﻿@model Euro2016.Models.TeamViewModel
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Teams</h2>
+@if (TempData["Message"] != null)
+{
+
+    <div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Warning!</strong> @TempData["Message"]
+    </div>
+}
+
+
+@using (Html.BeginForm("Add", "Teams"))
+{
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(x => x.Name) <span class="red">@Html.ValidationMessageFor(x => x.Name, "*")</span>
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(x => x.Flag) <span class="red">@Html.ValidationMessageFor(x => x.Flag, "*")</span>
+                @Html.TextBoxFor(x => x.Flag, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(x => x.GroupId) <span class="red">@Html.ValidationMessageFor(x => x.GroupId, "*")</span>
+                @Html.DropDownListFor(x => x.GroupId, new SelectList(Model.Groups, "Id", "Name"), "Please select", new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <input type="submit" value="Submit" />           
+            </div>
+        </div>
+    </div>
+}
+
+

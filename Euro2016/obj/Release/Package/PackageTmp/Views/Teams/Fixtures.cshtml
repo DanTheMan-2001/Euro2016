@@ -1,0 +1,35 @@
+﻿@model Euro2016.Models.TeamFixturesViewModel
+@{
+    ViewBag.Title = "Fixtures";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@string.Format("{0} Fixtures", Model.Team.Name)</h2>
+
+
+<table class="dataTable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Home Team</th>
+            <th>Away Team</th>
+            <th>Venue</th>
+            <th>Date</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var fixture in Model.Fixtures)
+        {
+
+            <tr>
+                <td>@fixture.Id</td>
+                <td><img src="@fixture.HomeTeam.Flag" /><a href="@Url.Action("Fixtures", "Teams", new { id = fixture.HomeTeamId })">@fixture.HomeTeam.Name</a></td>
+                <td><img src="@fixture.AwayTeam.Flag" /><a href="@Url.Action("Fixtures", "Teams", new { id = fixture.AwayTeamId })">@fixture.AwayTeam.Name</a></td>
+                <td>@fixture.Venue.Name</td>
+                <td>@fixture.Date</td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

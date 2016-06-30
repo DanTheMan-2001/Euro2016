@@ -1,0 +1,47 @@
+﻿@model Euro2016.Models.VenuesViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.ActionLink("Add Venue", "Add", "Venues", new { area = "" }, new { @class = "btn btn-default" })
+@if (TempData["Message"] != null)
+{
+
+    <div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Warning!</strong> @TempData["Message"]
+    </div>
+}
+
+<table class="dataTable">
+<thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Creation Date</th>
+        <th></th>
+    </tr>
+</thead>
+    <tbody>
+@foreach (var venue in Model.Venues)
+{
+    <tr>
+        <td>@venue.Id</td>
+        <td><a href="@Url.Action("Fixtures", "Venues", new { id = venue.Id })">@venue.Name</a></td>
+        <td>@venue.CreationDate</td>
+        <td>
+        @Html.ActionLink("Edit", "Edit", "Venues", new { id = venue.Id }, new { @class = "btn btn-default" })
+        @Html.ActionLink("Delete", "Delete", "Venues", new { id = venue.Id }, new { @class = "btn btn-default" })
+        </td>
+    </tr>
+}
+       
+    </tbody>
+</table>
+
+
+
+
+
+        

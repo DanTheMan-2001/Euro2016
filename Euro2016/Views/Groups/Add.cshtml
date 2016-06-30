@@ -1,0 +1,31 @@
+﻿@model Euro2016.Models.GroupViewModel
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Groups</h2>
+
+@using (Html.BeginForm("Add", "Groups"))
+{
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+
+                @Html.LabelFor(x => x.Name) <span class="red">@Html.ValidationMessageFor(x => x.Name, "*")</span>
+
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <input type="submit" value="Submit" />
+                @Html.ValidationSummary()
+            </div>
+        </div>
+    </div>
+}
+
+

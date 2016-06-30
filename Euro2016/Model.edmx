@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Euro2016Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Fixture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreationSource" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaintenanceDate" Type="datetime2" Precision="7" />
+          <Property Name="MaintenanceSource" Type="nvarchar" MaxLength="50" />
+          <Property Name="HomeTeamId" Type="int" Nullable="false" />
+          <Property Name="AwayTeamId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="VenueId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreationSource" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaintenanceDate" Type="datetime2" Precision="7" />
+          <Property Name="MaintenanceSource" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreationSource" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaintenanceDate" Type="datetime2" Precision="7" />
+          <Property Name="MaintenanceSource" Type="nvarchar" MaxLength="50" />
+          <Property Name="FixtureId" Type="int" Nullable="false" />
+          <Property Name="HomeScore" Type="int" Nullable="false" />
+          <Property Name="AwayScore" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreationSource" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaintenanceDate" Type="datetime2" Precision="7" />
+          <Property Name="MaintenanceSource" Type="nvarchar" MaxLength="50" />
+          <Property Name="GroupId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Flag" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Eliminated" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Venue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreationSource" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaintenanceDate" Type="datetime2" Precision="7" />
+          <Property Name="MaintenanceSource" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Fixture_AwayTeam">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Fixture" Type="Self.Fixture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fixture">
+              <PropertyRef Name="AwayTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fixture_HomeTeam">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Fixture" Type="Self.Fixture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fixture">
+              <PropertyRef Name="HomeTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fixture_Venue">
+          <End Role="Venue" Type="Self.Venue" Multiplicity="1" />
+          <End Role="Fixture" Type="Self.Fixture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venue">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fixture">
+              <PropertyRef Name="VenueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Result_Fixture">
+          <End Role="Fixture" Type="Self.Fixture" Multiplicity="1" />
+          <End Role="Result" Type="Self.Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fixture">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="FixtureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Team_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Euro2016ModelStoreContainer">
+          <EntitySet Name="Fixture" EntityType="Self.Fixture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Result" EntityType="Self.Result" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Venue" EntityType="Self.Venue" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Fixture_AwayTeam" Association="Self.FK_Fixture_AwayTeam">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Fixture" EntitySet="Fixture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fixture_HomeTeam" Association="Self.FK_Fixture_HomeTeam">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Fixture" EntitySet="Fixture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fixture_Venue" Association="Self.FK_Fixture_Venue">
+            <End Role="Venue" EntitySet="Venue" />
+            <End Role="Fixture" EntitySet="Fixture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Result_Fixture" Association="Self.FK_Result_Fixture">
+            <End Role="Fixture" EntitySet="Fixture" />
+            <End Role="Result" EntitySet="Result" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Team_Group" Association="Self.FK_Team_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Team" EntitySet="Team" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Euro2016Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Fixture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreationSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaintenanceDate" Type="DateTime" Precision="7" />
+          <Property Name="MaintenanceSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HomeTeamId" Type="Int32" Nullable="false" />
+          <Property Name="AwayTeamId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="VenueId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Venue" Relationship="Self.FK_Fixture_Venue" FromRole="Fixture" ToRole="Venue" />
+          <NavigationProperty Name="Results" Relationship="Self.FK_Result_Fixture" FromRole="Fixture" ToRole="Result" />
+          <NavigationProperty Name="AwayTeam" Relationship="Euro2016Model.FK_Fixture_AwayTeam" FromRole="Fixture" ToRole="Team" />
+          <NavigationProperty Name="HomeTeam" Relationship="Euro2016Model.FK_Fixture_HomeTeam" FromRole="Fixture" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreationSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaintenanceDate" Type="DateTime" Precision="7" />
+          <Property Name="MaintenanceSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Teams" Relationship="Euro2016Model.FK_Team_Group" FromRole="Group" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreationSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaintenanceDate" Type="DateTime" Precision="7" />
+          <Property Name="MaintenanceSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FixtureId" Type="Int32" Nullable="false" />
+          <Property Name="HomeScore" Type="Int32" Nullable="false" />
+          <Property Name="AwayScore" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Fixture" Relationship="Self.FK_Result_Fixture" FromRole="Result" ToRole="Fixture" />
+        </EntityType>
+        <EntityType Name="Venue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreationSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaintenanceDate" Type="DateTime" Precision="7" />
+          <Property Name="MaintenanceSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Fixtures" Relationship="Self.FK_Fixture_Venue" FromRole="Venue" ToRole="Fixture" />
+        </EntityType>
+        <Association Name="FK_Fixture_Venue">
+          <End Role="Venue" Type="Self.Venue" Multiplicity="1" />
+          <End Role="Fixture" Type="Self.Fixture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venue">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fixture">
+              <PropertyRef Name="VenueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Result_Fixture">
+          <End Role="Fixture" Type="Self.Fixture" Multiplicity="1" />
+          <End Role="Result" Type="Self.Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fixture">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="FixtureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Euro2016Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Fixtures" EntityType="Self.Fixture" />
+          <EntitySet Name="Groups" EntityType="Self.Group" />
+          <EntitySet Name="Results" EntityType="Self.Result" />
+          <EntitySet Name="Venues" EntityType="Self.Venue" />
+          <AssociationSet Name="FK_Fixture_Venue" Association="Self.FK_Fixture_Venue">
+            <End Role="Venue" EntitySet="Venues" />
+            <End Role="Fixture" EntitySet="Fixtures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Result_Fixture" Association="Self.FK_Result_Fixture">
+            <End Role="Fixture" EntitySet="Fixtures" />
+            <End Role="Result" EntitySet="Results" />
+          </AssociationSet>
+          <EntitySet Name="Teams" EntityType="Euro2016Model.Team" />
+          <AssociationSet Name="FK_Fixture_AwayTeam" Association="Euro2016Model.FK_Fixture_AwayTeam">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Fixture" EntitySet="Fixtures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fixture_HomeTeam" Association="Euro2016Model.FK_Fixture_HomeTeam">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Fixture" EntitySet="Fixtures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Team_Group" Association="Euro2016Model.FK_Team_Group">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="Team" EntitySet="Teams" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreationSource" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaintenanceDate" Type="DateTime" Precision="7" />
+          <Property Name="MaintenanceSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GroupId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Flag" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Eliminated" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AwayFixtures" Relationship="Euro2016Model.FK_Fixture_AwayTeam" FromRole="Team" ToRole="Fixture" />
+          <NavigationProperty Name="HomeFixtures" Relationship="Euro2016Model.FK_Fixture_HomeTeam" FromRole="Team" ToRole="Fixture" />
+          <NavigationProperty Name="Group" Relationship="Euro2016Model.FK_Team_Group" FromRole="Team" ToRole="Group" />
+        </EntityType>
+        <Association Name="FK_Fixture_AwayTeam">
+          <End Type="Euro2016Model.Team" Role="Team" Multiplicity="1" />
+          <End Type="Euro2016Model.Fixture" Role="Fixture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fixture">
+              <PropertyRef Name="AwayTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fixture_HomeTeam">
+          <End Type="Euro2016Model.Team" Role="Team" Multiplicity="1" />
+          <End Type="Euro2016Model.Fixture" Role="Fixture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fixture">
+              <PropertyRef Name="HomeTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Team_Group">
+          <End Type="Euro2016Model.Group" Role="Group" Multiplicity="1" />
+          <End Type="Euro2016Model.Team" Role="Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Euro2016ModelStoreContainer" CdmEntityContainer="Euro2016Entities">
+          <EntitySetMapping Name="Fixtures">
+            <EntityTypeMapping TypeName="Euro2016Model.Fixture">
+              <MappingFragment StoreEntitySet="Fixture">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="CreationSource" ColumnName="CreationSource" />
+                <ScalarProperty Name="MaintenanceDate" ColumnName="MaintenanceDate" />
+                <ScalarProperty Name="MaintenanceSource" ColumnName="MaintenanceSource" />
+                <ScalarProperty Name="HomeTeamId" ColumnName="HomeTeamId" />
+                <ScalarProperty Name="AwayTeamId" ColumnName="AwayTeamId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="VenueId" ColumnName="VenueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="Euro2016Model.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="CreationSource" ColumnName="CreationSource" />
+                <ScalarProperty Name="MaintenanceDate" ColumnName="MaintenanceDate" />
+                <ScalarProperty Name="MaintenanceSource" ColumnName="MaintenanceSource" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Results">
+            <EntityTypeMapping TypeName="Euro2016Model.Result">
+              <MappingFragment StoreEntitySet="Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="CreationSource" ColumnName="CreationSource" />
+                <ScalarProperty Name="MaintenanceDate" ColumnName="MaintenanceDate" />
+                <ScalarProperty Name="MaintenanceSource" ColumnName="MaintenanceSource" />
+                <ScalarProperty Name="FixtureId" ColumnName="FixtureId" />
+                <ScalarProperty Name="HomeScore" ColumnName="HomeScore" />
+                <ScalarProperty Name="AwayScore" ColumnName="AwayScore" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Venues">
+            <EntityTypeMapping TypeName="Euro2016Model.Venue">
+              <MappingFragment StoreEntitySet="Venue">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="CreationSource" ColumnName="CreationSource" />
+                <ScalarProperty Name="MaintenanceDate" ColumnName="MaintenanceDate" />
+                <ScalarProperty Name="MaintenanceSource" ColumnName="MaintenanceSource" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teams">
+            <EntityTypeMapping TypeName="Euro2016Model.Team">
+              <MappingFragment StoreEntitySet="Team">
+                <ScalarProperty Name="Eliminated" ColumnName="Eliminated" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="MaintenanceSource" ColumnName="MaintenanceSource" />
+                <ScalarProperty Name="MaintenanceDate" ColumnName="MaintenanceDate" />
+                <ScalarProperty Name="CreationSource" ColumnName="CreationSource" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

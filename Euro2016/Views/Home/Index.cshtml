@@ -1,0 +1,44 @@
+﻿@model Euro2016.Models.HomeViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    @foreach (var group in Model.Groups)
+    {
+        var i = 0;
+        <div class="col-md-6">
+            <h4><strong>@group.Name</strong></h4>
+            <table class="leagueTable">
+                <thead>
+                <th width="4%" align="center">NAME</th>
+                <th width="1%" align="center">PLD</th>
+                <th width="1%" align="center">W</th>
+                <th width="1%" align="center">D</th>
+                <th width="1%" align="center">L</th>
+                <th width="1%" align="center">F</th>
+                <th width="1%" align="center">A</th>
+                <th width="1%" align="center">GD</th>
+                <th width="1%" align="center"><strong>PTS</strong></th>
+                </thead>
+                <tbody>
+                    @foreach (var team in group.Teams.OrderBy(x => x.Name))
+                    {
+                        <tr class="@(i%2 == 0 ? "odd" : "even")">
+                            <td><img src="@team.Flag" /><a href="@Url.Action("Fixtures", "Teams", new { id = team.Id })">@team.Name</a></td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td><strong>0</strong></td>
+                        </tr>
+                        i++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

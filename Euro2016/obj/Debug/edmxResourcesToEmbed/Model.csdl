@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Euro2016Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Fixture">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CreationSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaintenanceDate" Type="DateTime" Precision="7" />
+    <Property Name="MaintenanceSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HomeTeamId" Type="Int32" Nullable="false" />
+    <Property Name="AwayTeamId" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="VenueId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Venue" Relationship="Self.FK_Fixture_Venue" FromRole="Fixture" ToRole="Venue" />
+    <NavigationProperty Name="Results" Relationship="Self.FK_Result_Fixture" FromRole="Fixture" ToRole="Result" />
+    <NavigationProperty Name="AwayTeam" Relationship="Euro2016Model.FK_Fixture_AwayTeam" FromRole="Fixture" ToRole="Team" />
+    <NavigationProperty Name="HomeTeam" Relationship="Euro2016Model.FK_Fixture_HomeTeam" FromRole="Fixture" ToRole="Team" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CreationSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaintenanceDate" Type="DateTime" Precision="7" />
+    <Property Name="MaintenanceSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Teams" Relationship="Euro2016Model.FK_Team_Group" FromRole="Group" ToRole="Team" />
+  </EntityType>
+  <EntityType Name="Result">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CreationSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaintenanceDate" Type="DateTime" Precision="7" />
+    <Property Name="MaintenanceSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FixtureId" Type="Int32" Nullable="false" />
+    <Property Name="HomeScore" Type="Int32" Nullable="false" />
+    <Property Name="AwayScore" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Fixture" Relationship="Self.FK_Result_Fixture" FromRole="Result" ToRole="Fixture" />
+  </EntityType>
+  <EntityType Name="Venue">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CreationSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaintenanceDate" Type="DateTime" Precision="7" />
+    <Property Name="MaintenanceSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Fixtures" Relationship="Self.FK_Fixture_Venue" FromRole="Venue" ToRole="Fixture" />
+  </EntityType>
+  <Association Name="FK_Fixture_Venue">
+    <End Role="Venue" Type="Self.Venue" Multiplicity="1" />
+    <End Role="Fixture" Type="Self.Fixture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venue">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Fixture">
+        <PropertyRef Name="VenueId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Result_Fixture">
+    <End Role="Fixture" Type="Self.Fixture" Multiplicity="1" />
+    <End Role="Result" Type="Self.Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fixture">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Result">
+        <PropertyRef Name="FixtureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Euro2016Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Fixtures" EntityType="Self.Fixture" />
+    <EntitySet Name="Groups" EntityType="Self.Group" />
+    <EntitySet Name="Results" EntityType="Self.Result" />
+    <EntitySet Name="Venues" EntityType="Self.Venue" />
+    <AssociationSet Name="FK_Fixture_Venue" Association="Self.FK_Fixture_Venue">
+      <End Role="Venue" EntitySet="Venues" />
+      <End Role="Fixture" EntitySet="Fixtures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Result_Fixture" Association="Self.FK_Result_Fixture">
+      <End Role="Fixture" EntitySet="Fixtures" />
+      <End Role="Result" EntitySet="Results" />
+    </AssociationSet>
+    <EntitySet Name="Teams" EntityType="Euro2016Model.Team" />
+    <AssociationSet Name="FK_Fixture_AwayTeam" Association="Euro2016Model.FK_Fixture_AwayTeam">
+      <End Role="Team" EntitySet="Teams" />
+      <End Role="Fixture" EntitySet="Fixtures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Fixture_HomeTeam" Association="Euro2016Model.FK_Fixture_HomeTeam">
+      <End Role="Team" EntitySet="Teams" />
+      <End Role="Fixture" EntitySet="Fixtures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Team_Group" Association="Euro2016Model.FK_Team_Group">
+      <End Role="Group" EntitySet="Groups" />
+      <End Role="Team" EntitySet="Teams" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Team">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CreationSource" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaintenanceDate" Type="DateTime" Precision="7" />
+    <Property Name="MaintenanceSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GroupId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Flag" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Eliminated" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AwayFixtures" Relationship="Euro2016Model.FK_Fixture_AwayTeam" FromRole="Team" ToRole="Fixture" />
+    <NavigationProperty Name="HomeFixtures" Relationship="Euro2016Model.FK_Fixture_HomeTeam" FromRole="Team" ToRole="Fixture" />
+    <NavigationProperty Name="Group" Relationship="Euro2016Model.FK_Team_Group" FromRole="Team" ToRole="Group" />
+  </EntityType>
+  <Association Name="FK_Fixture_AwayTeam">
+    <End Type="Euro2016Model.Team" Role="Team" Multiplicity="1" />
+    <End Type="Euro2016Model.Fixture" Role="Fixture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Fixture">
+        <PropertyRef Name="AwayTeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Fixture_HomeTeam">
+    <End Type="Euro2016Model.Team" Role="Team" Multiplicity="1" />
+    <End Type="Euro2016Model.Fixture" Role="Fixture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Fixture">
+        <PropertyRef Name="HomeTeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Team_Group">
+    <End Type="Euro2016Model.Group" Role="Group" Multiplicity="1" />
+    <End Type="Euro2016Model.Team" Role="Team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Team">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

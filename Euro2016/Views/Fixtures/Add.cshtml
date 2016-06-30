@@ -1,0 +1,54 @@
+﻿@model Euro2016.Models.FixturesViewModel
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Fixtures</h2>
+
+@if (TempData["Message"] != null)
+{
+
+    <div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Warning!</strong> @TempData["Message"]
+    </div>
+}
+@using (Html.BeginForm("Add", "Fixtures"))
+{
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(x => x.HomeTeamId) <span class="red">@Html.ValidationMessageFor(x => x.HomeTeamId, "*")</span>
+                @Html.DropDownListFor(x => x.HomeTeamId, new SelectList(Model.Teams, "Id", "Name"), "Please select", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(x => x.AwayTeamId) <span class="red">@Html.ValidationMessageFor(x => x.AwayTeamId, "*")</span>
+                @Html.DropDownListFor(x => x.AwayTeamId, new SelectList(Model.Teams, "Id", "Name"), "Please select", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(x => x.VenueId) <span class="red">@Html.ValidationMessageFor(x => x.VenueId, "*")</span>
+                @Html.DropDownListFor(x => x.VenueId, new SelectList(Model.Venues, "Id", "Name"), "Please select", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(x => x.FixtureDate) <span class="red">@Html.ValidationMessageFor(x => x.FixtureDate, "*")</span>
+                @Html.TextBoxFor(x => x.FixtureDate, new { @class = "form-control datepicker", autocomplete="off"})
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <input type="submit" value="Submit" />
+            </div>
+        </div>
+    </div>
+}
+
+

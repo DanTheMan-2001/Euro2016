@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Euro 2016</title>
+    
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+    <style>.dataTables_wrapper{margin-top:20px;}</style>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+
+                <a href="@Url.Action("Index", "Home")"><img src="http://www.euro2016calendar.com/res/euro-logo.png" /></a>
+
+                @Html.ActionLink("Tables", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Groups", "Index", "Groups", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Teams", "Index", "Teams", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Venues", "Index", "Venues", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Fixtures", "Index", "Fixtures", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Results", "Index", "Results", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Daniel Lord</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/jquery.datetimepicker.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".dataTable").DataTable({ "autoWidth": true, "iDisplayLength": 999999 });
+            $(".datepicker").datetimepicker();
+        });
+    </script>
+</body>
+</html>

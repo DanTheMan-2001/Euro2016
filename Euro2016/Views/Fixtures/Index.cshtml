@@ -1,0 +1,41 @@
+﻿@model Euro2016.Models.FixturesViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.ActionLink("Add Fixture", "Add", "Fixtures", new { area = "" }, new { @class = "btn btn-default" })
+@Html.ActionLink("Group Stages", "Group Stages", "Fixtures", new { area = "" }, new { @class = "btn btn-default" })
+@Html.ActionLink("Round of 16", "Round of 16", "Fixtures", new { area = "" }, new { @class = "btn btn-default" })
+
+
+<table class="dataTable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Home Team</th>
+            <th>Away Team</th>
+            <th>Venue</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var fixture in Model.Fixtures)
+{
+    
+    <tr>
+        <td>@fixture.Id</td>
+
+        <td><img src="@fixture.HomeTeam.Flag" /><a href="@Url.Action("Fixtures", "Teams", new { id = fixture.HomeTeamId })">@fixture.HomeTeam.Name</a></td>
+        <td><img src="@fixture.AwayTeam.Flag" /><a href="@Url.Action("Fixtures", "Teams", new { id = fixture.AwayTeamId })">@fixture.AwayTeam.Name</a></td>
+        <td>@fixture.Venue.Name</td>
+        <td>@fixture.Date</td>
+        <td>
+        @Html.ActionLink("Edit", "Edit", "Fixtures", new { id = fixture.Id }, new { @class = "btn btn-default" })
+        @Html.ActionLink("Delete", "Delete", "Fixtures", new { id = fixture.Id }, new { @class = "btn btn-default" })
+        </td>
+    </tr>
+}
+    </tbody>
+</table>

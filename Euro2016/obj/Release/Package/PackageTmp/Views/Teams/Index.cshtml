@@ -1,0 +1,45 @@
+﻿@model Euro2016.Models.TeamViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@Html.ActionLink("Add Team", "Add", "Teams", new { area = "" }, new { @class = "btn btn-default" })
+@if (TempData["Message"] != null)
+{
+
+    <div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Warning!</strong> @TempData["Message"]
+    </div>
+}
+
+<table class="dataTable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Flag</th>
+            <th>Group</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var team in Model.Teams)
+{
+    <tr>
+        <td>@team.Id</td>
+        <td><a href="@Url.Action("Fixtures", "Teams", new { id = team.Id })">@team.Name</a></td>
+        <td><img src="@team.Flag" /></td>
+        <td>@team.Group.Name</td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", "Teams", new { id = team.Id }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Delete", "Delete", "Teams", new { id = team.Id }, new { @class = "btn btn-default" })
+        </td>
+    </tr>
+}
+    </tbody>
+</table>
+

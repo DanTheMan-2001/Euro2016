@@ -1,0 +1,115 @@
+﻿html,body{
+min-height: 100%;
+}
+
+body {
+   
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-size: 13px;
+    background: #fff; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#fff, #D3D3D3, #C0C0C0); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#fff, #D3D3D3, #C0C0C0); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#fff, #D3D3D3, #C0C0C0); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#fff, #D3D3D3, #C0C0C0); /* Standard syntax */
+}
+
+.bgimage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    opacity: 0.3;
+    z-index: -10000;
+}
+
+.body-content {
+    padding-top: 20px !important;
+}
+
+
+span.red {
+    color: red;
+}
+
+.navbar {
+    background: #4B0082; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, #4B0082, #EE82EE); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #4B0082, #EE82EE); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #4B0082, #EE82EE); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #4B0082, #EE82EE); /* Standard syntax */
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    vertical-align: middle;
+}
+
+    .navbar-inverse .navbar-brand:hover {
+        color: #999;
+        font-weight: 900;
+    }
+
+.dataTable {
+    width: 100%;
+}
+
+
+.leagueTable {
+    border: 1pt solid #999;
+    margin-top: 5px;
+}
+
+    .leagueTable a, .dataTable a {
+        color: black;
+    }
+
+.dataTables_wrapper {
+    background-color: #fff;
+    padding: 10px;
+}
+
+.dataTable img, .leagueTable img {
+    height: 25px;
+}
+
+.leagueTable thead {
+    background-color: #999;
+    color: #fff;
+}
+
+.leagueTable td, .leagueTable th {
+    padding: 5px;
+}
+
+.leagueTable tr.even, .dataTable tr.even {
+    background-color: #ededed;
+}
+
+.leagueTable tr.odd, .dataTable tr.odd {
+    background-color: #fff;
+}
+
+.navbar-header img {
+    max-width: 88px;
+    padding: 5px;
+    float: left;
+    margin-right: 15px;
+}
+
+}
+
+
+.alert {
+    margin-top: 10px;
+}
+
+.dataTables_info, .dataTables_paginate, .dataTables_length {
+    display: none;
+}
+
+.dataTables_filter{
+    text-align: left !important;
+    margin-bottom:20px;
+}

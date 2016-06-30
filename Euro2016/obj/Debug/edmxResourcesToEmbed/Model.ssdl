@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Euro2016Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Fixture">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreationSource" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MaintenanceDate" Type="datetime2" Precision="7" />
+    <Property Name="MaintenanceSource" Type="nvarchar" MaxLength="50" />
+    <Property Name="HomeTeamId" Type="int" Nullable="false" />
+    <Property Name="AwayTeamId" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="VenueId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreationSource" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MaintenanceDate" Type="datetime2" Precision="7" />
+    <Property Name="MaintenanceSource" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Result">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreationSource" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MaintenanceDate" Type="datetime2" Precision="7" />
+    <Property Name="MaintenanceSource" Type="nvarchar" MaxLength="50" />
+    <Property Name="FixtureId" Type="int" Nullable="false" />
+    <Property Name="HomeScore" Type="int" Nullable="false" />
+    <Property Name="AwayScore" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Team">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreationSource" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MaintenanceDate" Type="datetime2" Precision="7" />
+    <Property Name="MaintenanceSource" Type="nvarchar" MaxLength="50" />
+    <Property Name="GroupId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Flag" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Eliminated" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Venue">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreationSource" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MaintenanceDate" Type="datetime2" Precision="7" />
+    <Property Name="MaintenanceSource" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Fixture_AwayTeam">
+    <End Role="Team" Type="Self.Team" Multiplicity="1" />
+    <End Role="Fixture" Type="Self.Fixture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Fixture">
+        <PropertyRef Name="AwayTeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Fixture_HomeTeam">
+    <End Role="Team" Type="Self.Team" Multiplicity="1" />
+    <End Role="Fixture" Type="Self.Fixture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Fixture">
+        <PropertyRef Name="HomeTeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Fixture_Venue">
+    <End Role="Venue" Type="Self.Venue" Multiplicity="1" />
+    <End Role="Fixture" Type="Self.Fixture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venue">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Fixture">
+        <PropertyRef Name="VenueId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Result_Fixture">
+    <End Role="Fixture" Type="Self.Fixture" Multiplicity="1" />
+    <End Role="Result" Type="Self.Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fixture">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Result">
+        <PropertyRef Name="FixtureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Team_Group">
+    <End Role="Group" Type="Self.Group" Multiplicity="1" />
+    <End Role="Team" Type="Self.Team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Team">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Euro2016ModelStoreContainer">
+    <EntitySet Name="Fixture" EntityType="Self.Fixture" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Result" EntityType="Self.Result" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Venue" EntityType="Self.Venue" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Fixture_AwayTeam" Association="Self.FK_Fixture_AwayTeam">
+      <End Role="Team" EntitySet="Team" />
+      <End Role="Fixture" EntitySet="Fixture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Fixture_HomeTeam" Association="Self.FK_Fixture_HomeTeam">
+      <End Role="Team" EntitySet="Team" />
+      <End Role="Fixture" EntitySet="Fixture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Fixture_Venue" Association="Self.FK_Fixture_Venue">
+      <End Role="Venue" EntitySet="Venue" />
+      <End Role="Fixture" EntitySet="Fixture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Result_Fixture" Association="Self.FK_Result_Fixture">
+      <End Role="Fixture" EntitySet="Fixture" />
+      <End Role="Result" EntitySet="Result" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Team_Group" Association="Self.FK_Team_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="Team" EntitySet="Team" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
